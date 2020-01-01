@@ -1,0 +1,164 @@
+#singleBlock
+{
+    margin-top: 10px;
+    margin-left:14px;
+    background-color:darkslategrey;
+    color: black;
+    border:2px solid lightblue;
+    height:660px;
+    width:295px;
+    border-radius: 40px;
+    float:left;
+
+}
+#imgId{
+    height:270px;
+    width:180px;
+}
+#headerId{
+    background-color: lightgrey;
+  
+    padding:5px 20px;
+}
+#wholeBody{
+    background-color: bisque; 
+}
+#despId{
+    background-color: bisque;
+    padding:8px;
+    font-size: 14px;
+    margin-left: 8px;
+    border:2px solid black;
+    border-radius: 5px;
+    margin-right: 8px;
+    height:130px;
+    max-height: 130px;
+    overflow-y:scroll
+}
+#title
+{
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+#searchBox{ 
+    background-color: crimson;
+    margin-left: 75%;
+    margin-right: 2%;
+   border:10px solid gray;
+   padding:10px;
+}
+#searchId{
+    margin-left:1px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF
+}
+#searchId2{
+  float:left;
+    margin-left:50px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF
+}
+#searchInp{
+    margin-left:10px;
+    margin-right: 10px;
+}
+#content{
+    background-color:lightcoral;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 14px;
+    margin-right: 14px;
+    clear:both;
+}
+
+button {
+    padding: 8px 10px;
+    background-color:lightgreen;
+    color: black;
+    border: 2px solid grey;
+    margin-left: 4px;
+    border-radius: 8px;
+  }
+  
+button:hover {
+border:2px solid black;
+background-color:steelblue;
+color: black;
+cursor: pointer;
+}
+#switchPage
+{
+    margin-left:15%;
+    margin-top: 40px;
+    float:left;
+}
+#prevBtn
+{
+   float:left;
+}
+#pageCount
+{
+  float:left;
+}
+#noResult
+{
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#footer{
+    clear:both;
+     padding:20px;
+    background-color: #d3d3d3;
+    border: 3px solid gray;
+}
+#lastFooter{
+    
+    padding:20px;
+}
+#signin_id{
+    margin-left: 30%;
+}
+#signin_modal{
+ 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+}
+#signin_part {
+    background-color:rgba(0,0,0,0.8);
+    margin: 5% auto 10% auto; 
+    border: 1px solid #888;
+    width: 60%; 
+    height: 85%;
+    display: flex;
+    border: 3px solid gray;
+   
+   
+}
+#close_modal{
+    margin-right: 15px;
+    margin-top: 15px;
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+.signup_details{
+    margin-left: 50px;
+    width: 700px;
+}
+input{
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+  
+}
+.text_color{
+    color: lightgrey;
+}
