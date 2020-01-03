@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import "./Components.css";
-import Favorite from "./favourite";
-import Wishlist from "./wishlist";
 import {BrowserRouter as Router,Route,Link} from "react-router-dom";
-import SigninModal from  "./signinModal";
+import RenderComponent from './RenderComponents';
+
 
 export default class ImportAPI extends Component {
         constructor(props){
@@ -66,9 +65,8 @@ this.setState({[event.target.name] : event.target.value})
  }
 
 componentDidMount(){    
-        axios.get("https://api.themoviedb.org/3/search/movie?api_key=d272326e467344029e68e3c4ff0b4059&language=en-US&query=nan")
+        axios.get("https://api.themoviedb.org/3/search/movie?api_key=d272326e467344029e68e3c4ff0b4059&language=en-US&query=batman")
          .then(res=>{
-             console.log(res.data.results);
             res.data.results.sort(function(a, b){
                 return b.popularity-a.popularity
             })
@@ -77,72 +75,7 @@ componentDidMount(){
 
     })
 }
-favourite(key)
-{
-    let {info,fav}=this.state;
-    if(fav.length===0&&(JSON.parse(localStorage.getItem("FAV"))==null))
-    {  
-        var obj=info[key];
-       fav.push(obj);
-       localStorage.setItem("FAV",JSON.stringify( fav));
-       this.setState({fav});
-    }
-    else{  
-        fav.push(info[key]);
-        localStorage.setItem("FAV",JSON.stringify( fav));
-        this.setState({fav});
-    }
-}
-wishList(key)
-{
-    let {info,wishlist}=this.state;
-    if(wishlist.length===0&&(JSON.parse(localStorage.getItem("WISHLIST"))==null)){
-       var obj=info[key];
-       wishlist.push(obj);
-       localStorage.setItem("WISHLIST",JSON.stringify(wishlist));
-       this.setState({wishlist});
-    }
-    else{  
-        wishlist.push(info[key]);
-        localStorage.setItem("WISHLIST",JSON.stringify(wishlist));
-        this.setState({wishlist});
-    }
-}
-renderAll(val)
-{
-    console.log(val);
-    return(
-       
-        <div id="wholeBody">
-            
-        {val.map((singleObj,key)=>{
-            let imgaddress;
-            if(singleObj.poster_path!==null)
-            {
-            imgaddress="http://image.tmdb.org/t/p/w185/"+singleObj.poster_path;
-            }
-            else{
-                imgaddress="https://s3.us-east-2.amazonaws.com/shdhs.org/2018/01/No-image-available.jpg";
-            }
-            return(
-                <div id="singleBlock">
-                    <br></br>
-                    <center><img id="imgId" src={imgaddress}/>
-                    <h3 id="title">{singleObj.original_title}</h3>
-                    <h4>IMDb ratings:{singleObj.vote_average}</h4>
-                    <h5>Release Date:{singleObj.release_date}</h5></center>
-                    <p id="despId">{singleObj.overview}</p>
-                   <button id={key} onClick={()=>this.favourite(key)} style={{marginLeft:"90px"}}> <img src="https://img.icons8.com/flat_round/64/000000/hearts.png" style={{height:"30px",width:"30px"}}></img></button>
-                    <button id={key} onClick={()=>this.wishList(key)}><img src="https://img.icons8.com/color/48/000000/wish-list.png" style={{height:"30px",width:"30px"}}></img></button>
-                    
-            <p></p>
-                </div>
-            )
-        })}
 
-        </div>
-    )
-}
 pageSwitch(switchPage)
 {
    let{totalPages,page,url,usersearchcopy}=this.state;
@@ -180,7 +113,7 @@ pageRender()
              <button id="prevBtn" onClick={()=>this.pageSwitch(1)}>Previous Page</button>
              <p id="pageCount"> [....Page:{this.state.page}..of..{this.state.totalPages}....]</p>
              <button onClick={()=>this.pageSwitch(2)}>Next Page</button>
-            
+             
         </div>
     )
 }
@@ -197,6 +130,7 @@ norender()
 
 render() {    
         console.log(this.state)
+        
         return (
             <div>
                  
@@ -209,23 +143,11 @@ render() {
                 <p id="searchId">Search here:-</p><input id="searchInp" name="usersearch" onChange = {(event)=>this.handleChange(event) }value={this.state.usersearch}></input>
                 <button onClick={()=>this.search()}>Submit</button>
                 </div>
-                <Router >
-                <Link to="/"><button style={{marginLeft:"39%",marginBottom:"40px"}}>Home</button></Link>
-                <Link to="/favourites"><button>Favorites</button></Link>
-                <Link to="/wishlist"><button>Wishlist</button></Link>
-
-                <Route path="/" exact render={()=>this.renderAll(this.state.info)} ></Route>
-                <Route path="/favourites"><Favorite a={this.renderAll}/></Route>
-                <Route path="/wishlist"><Wishlist b={this.renderAll}/></Route>
-                </Router>
+                <RenderComponent val={this.state.info} />
 
                 </div>
                 <div>
-                
-              
-                
-                <SigninModal/>
-
+             
             </div>
             </div>
         )
